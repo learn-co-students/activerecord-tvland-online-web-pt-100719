@@ -1,10 +1,12 @@
 class Show < ActiveRecord::Base
-    belongs_to :networks
+    belongs_to :network
+    has_many :characters
+    has_many :actors, through: :characters
  
 
     def actors_list
         actors = []
-        self.characters.actors.map do |a|
+        self.actors.map do |a|
             actors << a.full_name
         end 
         actors
